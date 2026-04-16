@@ -21,8 +21,8 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--bg-main);
     color: var(--text-primary);
-    line-height: 1.5;
-    padding-top: 100px;
+    line-height: 1.4;
+    padding-top: 70px;
     /* Space for fixed header */
 }
 
@@ -33,19 +33,19 @@ header {
     left: 0;
     right: 0;
     z-index: 100;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
-    padding: 1rem 2rem;
+    padding: 0.5rem 1.5rem;
 }
 
 .header-content {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 /* App Tabs */
@@ -108,12 +108,12 @@ h1 {
 
 #searchInput {
     width: 100%;
-    padding: 10px 16px;
-    padding-right: 40px;
-    border-radius: 10px;
+    padding: 6px 12px;
+    padding-right: 32px;
+    border-radius: 8px;
     border: 1px solid var(--border-color);
     background: #f1f5f9;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     transition: all 0.2s;
 }
 
@@ -138,35 +138,35 @@ h1 {
 
 /* Grid Layout */
 main {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 2rem;
-    columns: 3 350px;
-    /* Masonry-like columns */
-    column-gap: 2rem;
+    padding: 1rem;
+    columns: 4 280px;
+    /* Masonry-like columns, allows up to 4 columns */
+    column-gap: 1rem;
 }
 
 .card {
     break-inside: avoid;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     background: var(--card-bg);
-    border-radius: 16px;
+    border-radius: 12px;
     border: 1px solid var(--border-color);
-    padding: 1.5rem;
+    padding: 1rem;
     transition: transform 0.2s;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
 }
 
 .card-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 1.25rem;
+    gap: 8px;
+    margin-bottom: 0.75rem;
 }
 
 .card-header .icon {
@@ -192,7 +192,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 0;
+    padding: 4px 0;
     border-bottom: 1px dashed #f1f5f9;
 }
 
@@ -201,37 +201,38 @@ main {
 }
 
 .desc {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: 500;
     color: #334155;
+    line-height: 1.2;
 }
 
 .keys {
     display: flex;
-    gap: 4px;
+    gap: 3px;
 }
 
 kbd {
     display: inline-block;
-    padding: 3px 6px;
-    font-size: 0.75rem;
+    padding: 1px 4px;
+    font-size: 0.7rem;
     font-weight: 600;
     font-family: inherit;
     color: var(--kbd-text);
     background: var(--kbd-bg);
     border: 1px solid #d1d5db;
     border-bottom: 2px solid #cbd5e1;
-    border-radius: 6px;
-    min-width: 24px;
+    border-radius: 4px;
+    min-width: 20px;
     text-align: center;
 }
 
 /* Footer */
 footer {
-    padding: 4rem 2rem;
+    padding: 2rem 1rem;
     text-align: center;
     color: var(--text-secondary);
-    font-size: 0.875rem;
+    font-size: 0.75rem;
 }
 
 /* Responsive */
