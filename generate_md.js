@@ -49,3 +49,12 @@ let googleObjStr = googleCode.split('function renderShortcuts')[0];
 let googleData;
 eval(googleObjStr + '; googleData = googleShortcuts;');
 fs.writeFileSync('md/google_search_shortcuts.md', formatAsMarkdown('Google Search Commands', googleData));
+
+// 5. Windows OS
+let winCode = fs.readFileSync('js/win.js', 'utf8');
+let winObjStr = winCode.split('function renderShortcuts')[0];
+let winData;
+eval(winObjStr + '; winData = winShortcuts;');
+fs.writeFileSync('md/win_shortcuts.md', formatAsMarkdown('Windows OS Shortcuts', winData));
+
+console.log("Markdown files generated successfully!");
