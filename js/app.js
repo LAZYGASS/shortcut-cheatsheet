@@ -11,7 +11,9 @@ const shortcuts = [
             { desc: "작업 취소 (Undo)", keys: ["Ctrl", "Z"] },
             { desc: "다시 실행 (Redo)", keys: ["Ctrl", "Y"] },
             { desc: "찾기", keys: ["Ctrl", "F"] },
-            { desc: "바꾸기", keys: ["Ctrl", "H"] }
+            { desc: "바꾸기", keys: ["Ctrl", "H"] },
+            { desc: "셀 콘텐츠 삭제", keys: ["Delete"] },
+            { desc: "바로 가기 메뉴 열기", keys: ["Shift", "F10"] }
         ]
     },
     {
@@ -29,18 +31,36 @@ const shortcuts = [
         ]
     },
     {
+        category: "리본 메뉴 (Ribbon Nav)",
+        color: "#F4B400",
+        icon: "🎀",
+        items: [
+            { desc: "파일 메뉴 열기", keys: ["Alt", "F"] },
+            { desc: "홈 탭으로 이동", keys: ["Alt", "H"] },
+            { desc: "삽입 탭으로 이동", keys: ["Alt", "N"] },
+            { desc: "페이지 레이아웃 탭", keys: ["Alt", "P"] },
+            { desc: "수식 탭으로 이동", keys: ["Alt", "M"] },
+            { desc: "데이터 탭으로 이동", keys: ["Alt", "A"] },
+            { desc: "검토 탭으로 이동", keys: ["Alt", "R"] },
+            { desc: "보기 탭으로 이동", keys: ["Alt", "W"] }
+        ]
+    },
+    {
         category: "편집 및 서식 (Formatting)",
         color: "#8764b8",
         icon: "🎨",
         items: [
-            { desc: "복사하기", keys: ["Ctrl", "C"] },
-            { desc: "붙여넣기", keys: ["Ctrl", "V"] },
+            { desc: "복사하기 / 붙여넣기", keys: ["Ctrl", "C/V"] },
             { desc: "선택하여 붙여넣기", keys: ["Ctrl", "Alt", "V"] },
             { desc: "셀 서식 대화상자", keys: ["Ctrl", "1"] },
-            { desc: "굵게", keys: ["Ctrl", "B"] },
-            { desc: "밑줄", keys: ["Ctrl", "U"] },
+            { desc: "글꼴 서식 지정", keys: ["Ctrl", "Shift", "F"] },
+            { desc: "굵게 / 밑줄", keys: ["Ctrl", "B/U"] },
             { desc: "빠른 채우기", keys: ["Ctrl", "E"] },
-            { desc: "서식 복사", keys: ["Alt", "H", "F", "P"] }
+            { desc: "서식 복사", keys: ["Alt", "H", "F", "P"] },
+            { desc: "기본 숫자 서식", keys: ["Ctrl", "Shift", "~"] },
+            { desc: "통화 서식 적용", keys: ["Ctrl", "Shift", "$"] },
+            { desc: "백분율 서식 적용", keys: ["Ctrl", "Shift", "%"] },
+            { desc: "날짜 서식 적용", keys: ["Ctrl", "Shift", "#"] }
         ]
     },
     {
@@ -49,7 +69,7 @@ const shortcuts = [
         icon: "📊",
         items: [
             { desc: "자동 합계", keys: ["Alt", "="] },
-            { desc: "셀 편집", keys: ["F2"] },
+            { desc: "셀 편집 (활성 셀)", keys: ["F2"] },
             { desc: "절대 참조 변환", keys: ["F4"] },
             { desc: "자동 필터 활성화", keys: ["Ctrl", "Shift", "L"] },
             { desc: "표 만들기", keys: ["Ctrl", "T"] },
@@ -62,14 +82,16 @@ const shortcuts = [
         color: "#00b7c3",
         icon: "🚀",
         items: [
-            { desc: "전체 선택", keys: ["Ctrl", "A"] },
-            { desc: "행 전체 선택", keys: ["Shift", "Space"] },
-            { desc: "열 전체 선택", keys: ["Ctrl", "Space"] },
-            { desc: "데이터 끝으로 이동", keys: ["Ctrl", "방향키"] },
-            { desc: "다음 시트로 이동", keys: ["Ctrl", "PgDn"] },
-            { desc: "이전 시트로 이동", keys: ["Ctrl", "PgUp"] },
-            { desc: "행 삭제", keys: ["Ctrl", "-"] },
-            { desc: "행 삽입", keys: ["Ctrl", "Shift", "+"] }
+            { desc: "전체 선택 (현재 영역)", keys: ["Ctrl", "A"] },
+            { desc: "행 / 열 전체 선택", keys: ["Shift/Ctrl", "Space"] },
+            { desc: "데이터 범위 끝 이동", keys: ["Ctrl", "방향키"] },
+            { desc: "워크시트의 시작 위치", keys: ["Ctrl", "Home"] },
+            { desc: "워크시트의 마지막 셀", keys: ["Ctrl", "End"] },
+            { desc: "다음 / 이전 시트", keys: ["Ctrl", "PgDn/PgUp"] },
+            { desc: "화면 아래 / 위 이동", keys: ["PgDn/PgUp"] },
+            { desc: "빈 셀 삽입 대화상자", keys: ["Ctrl", "Shift", "+"] },
+            { desc: "선택한 셀 삭제", keys: ["Ctrl", "-"] },
+            { desc: "행 숨기기 / 열 숨기기", keys: ["Ctrl", "9/0"] }
         ]
     },
     {
@@ -81,7 +103,8 @@ const shortcuts = [
             { desc: "현재 시간 입력", keys: ["Ctrl", "Shift", ":"] },
             { desc: "셀 내부 줄바꿈", keys: ["Alt", "Enter"] },
             { desc: "하이퍼링크 삽입", keys: ["Ctrl", "K"] },
-            { desc: "메모 삽입", keys: ["Shift", "F2"] }
+            { desc: "메모 삽입/수정", keys: ["Shift", "F2"] },
+            { desc: "스레드 댓글 삽입", keys: ["Ctrl", "Shift", "F2"] }
         ]
     }
 ];
