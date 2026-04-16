@@ -78,6 +78,26 @@ const mdShortcuts = [
             { desc: "각주 (Footnotes)", keys: ["[^1]"] },
             { desc: "줄바꿈 (Line break)", keys: ["스페이스 2번", "Enter"] }
         ]
+    },
+    {
+        category: "옵시디언 콜아웃 (Obsidian)",
+        color: "#7e22ce", // Obsidian Purple
+        icon: "💎",
+        items: [
+            { desc: "기본 메모 (Note)", keys: ["> [!note]"] },
+            { desc: "요약 (Abstract/Summary)", keys: ["> [!abstract] / [!summary] / [!tldr]"] },
+            { desc: "정보 (Info)", keys: ["> [!info]"] },
+            { desc: "할일 (Todo)", keys: ["> [!todo]"] },
+            { desc: "팁/중요 (Tip/Important)", keys: ["> [!tip] / [!hint] / [!important]"] },
+            { desc: "성공/완료 (Success/Done)", keys: ["> [!success] / [!check] / [!done]"] },
+            { desc: "질문/도움말 (Question/FAQ)", keys: ["> [!question] / [!help] / [!faq]"] },
+            { desc: "경고/주의 (Warning/Caution)", keys: ["> [!warning] / [!caution] / [!attention]"] },
+            { desc: "실패/누락 (Failure/Missing)", keys: ["> [!failure] / [!fail] / [!missing]"] },
+            { desc: "위험/에러 (Danger/Error)", keys: ["> [!danger] / [!error]"] },
+            { desc: "버그 (Bug)", keys: ["> [!bug]"] },
+            { desc: "예시 (Example)", keys: ["> [!example]"] },
+            { desc: "인용구 (Quote/Cite)", keys: ["> [!quote] / [!cite]"] }
+        ]
     }
 ];
 
