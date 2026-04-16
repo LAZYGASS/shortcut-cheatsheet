@@ -2,6 +2,9 @@
 
 이 프로젝트는 Excel 및 Google Sheets의 핵심 단축키를 프리미엄 디자인(Storyfox 스타일)으로 제공하는 웹 기반의 치트시트입니다.
 
+## 🚀 Live Demo
+👉 **[https://lazygass.github.io/shortcut-cheatsheet/](https://lazygass.github.io/shortcut-cheatsheet/)**
+
 ## 기능 (Features)
 
 - 🖥️ **Excel 치트시트:** Windows 환경에 최적화된 엑셀 핵심 단축키.
