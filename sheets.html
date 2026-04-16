@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sheets Shortcuts | 구글 스프레드시트 단축키</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --accent-color: #0F9D58;
+            /* Google Sheets Green */
+        }
+
+        @media print {
+
+            header,
+            footer,
+            .search-bar {
+                display: none !important;
+            }
+
+            body {
+                padding-top: 0;
+            }
+
+            main {
+                columns: 2 !important;
+                padding: 0;
+            }
+
+            .card {
+                break-inside: avoid;
+                border: 1px solid #eee;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <div class="brand">
+                <div class="logo">GS</div>
+                <h1>Sheets Shortcuts</h1>
+            </div>
+            <nav class="app-tabs">
+                <a href="index.html" class="app-tab">Excel (Win)</a>
+                <a href="sheets.html" class="app-tab active">Google Sheets</a>
+            </nav>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for shortcuts (e.g. border, align)..."
+                    autocomplete="off">
+                <kbd>/</kbd>
+            </div>
+            <div class="actions">
+                <button onclick="window.print()"
+                    style="padding: 8px 16px; border-radius: 8px; border: 1px solid #e2e8f0; background: white; cursor: pointer; font-size: 0.875rem; font-weight: 500;">
+                    🖨️ 인쇄하기
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="shortcutGrid">
+        <!-- JS로 채워짐 -->
+    </main>
+
+    <footer>
+        <p>Copyright &copy; 2024. Designed by Antigravity. Inspired by <b>Storyfox</b>.</p>
+        <p style="margin-top: 8px; opacity: 0.7;">단축키 데이터 출처: 사용자 제공 데이터</p>
+    </footer>
+
+    <script src="js/sheets.js"></script>
+</body>
+
+</html>

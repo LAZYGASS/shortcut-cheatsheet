@@ -1,0 +1,251 @@
+:root {
+    --bg-main: #f8fafc;
+    --card-bg: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+    --kbd-bg: #f1f5f9;
+    --kbd-text: #1e293b;
+    --kbd-shadow: rgba(0, 0, 0, 0.1);
+    --accent-color: #1d6f42;
+    /* Default Excel Green */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.5;
+    padding-top: 100px;
+    /* Space for fixed header */
+}
+
+/* Header & Search */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* App Tabs */
+.app-tabs {
+    display: flex;
+    background: #f1f5f9;
+    padding: 4px;
+    border-radius: 12px;
+    gap: 4px;
+}
+
+.app-tab {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+}
+
+.app-tab.active {
+    background: white;
+    color: var(--text-primary);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.app-tab:hover:not(.active) {
+    color: var(--text-primary);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    background: var(--accent-color);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.search-bar {
+    position: relative;
+    flex: 1;
+    max-width: 600px;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 10px 16px;
+    padding-right: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: #f1f5f9;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+
+#searchInput:focus {
+    outline: none;
+    background: white;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(29, 111, 66, 0.1);
+}
+
+.search-bar kbd {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    background: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--text-secondary);
+}
+
+/* Grid Layout */
+main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    columns: 3 350px;
+    /* Masonry-like columns */
+    column-gap: 2rem;
+}
+
+.card {
+    break-inside: avoid;
+    margin-bottom: 2rem;
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.25rem;
+}
+
+.card-header .icon {
+    font-size: 1.2rem;
+}
+
+.card-header h2 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    border-left: 4px solid var(--accent-color);
+    padding-left: 10px;
+}
+
+/* Shortcuts */
+.shortcut-list {
+    list-style: none;
+}
+
+.shortcut-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #f1f5f9;
+}
+
+.shortcut-item:last-child {
+    border-bottom: none;
+}
+
+.desc {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #334155;
+}
+
+.keys {
+    display: flex;
+    gap: 4px;
+}
+
+kbd {
+    display: inline-block;
+    padding: 3px 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--kbd-text);
+    background: var(--kbd-bg);
+    border: 1px solid #d1d5db;
+    border-bottom: 2px solid #cbd5e1;
+    border-radius: 6px;
+    min-width: 24px;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .search-bar {
+        max-width: 100%;
+    }
+}
