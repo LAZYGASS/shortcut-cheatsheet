@@ -58,3 +58,10 @@ eval(winObjStr + '; winData = winShortcuts;');
 fs.writeFileSync('md/win_shortcuts.md', formatAsMarkdown('Windows OS Shortcuts', winData));
 
 console.log("Markdown files generated successfully!");
+
+// 6. AutoCAD
+let cadCode = fs.readFileSync('js/cad.js', 'utf8');
+let cadObjStr = cadCode.split('function renderShortcuts')[0];
+let cadData;
+eval(cadObjStr + '; cadData = cadShortcuts;');
+fs.writeFileSync('md/cad_shortcuts.md', formatAsMarkdown('AutoCAD Shortcuts', cadData));

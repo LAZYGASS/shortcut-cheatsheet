@@ -5,7 +5,8 @@ const links = {
     'sheets.html': 'sheets_shortcuts.md',
     'md.html': 'markdown_shortcuts.md',
     'google.html': 'google_search_shortcuts.md',
-    'win.html': 'win_shortcuts.md'
+    'win.html': 'win_shortcuts.md',
+    'cad.html': 'cad_shortcuts.md'
 };
 
 for (const [file, mdFile] of Object.entries(links)) {
