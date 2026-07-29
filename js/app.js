@@ -91,7 +91,10 @@ const shortcuts = [
             { desc: "화면 아래 / 위 이동", keys: ["PgDn/PgUp"] },
             { desc: "빈 셀 삽입 대화상자", keys: ["Ctrl", "Shift", "+"] },
             { desc: "선택한 셀 삭제", keys: ["Ctrl", "-"] },
-            { desc: "행 숨기기 / 열 숨기기", keys: ["Ctrl", "9/0"] }
+            { desc: "행 숨기기 / 열 숨기기", keys: ["Ctrl", "9/0"] },
+            { desc: "그룹 지정 (행/열 묶기)", keys: ["Alt", "Shift", "→"] },
+            { desc: "그룹 해제", keys: ["Alt", "Shift", "←"] },
+            { desc: "개요 기호 표시/숨기기", keys: ["Ctrl", "8"] }
         ]
     },
     {
