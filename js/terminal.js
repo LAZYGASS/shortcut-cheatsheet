@@ -128,6 +128,20 @@ const shortcuts = [
             { desc: "매뉴얼 보기", keys: ["man", "<cmd>"] },
             { desc: "환경변수 목록", keys: ["env"] }
         ]
+    },
+    {
+        // 셸 명령이 아니라 명령창(콘솔) 자체를 다루는 키다.
+        // 전체화면으로 잘못 바뀌었을 때 되돌리는 법을 못 찾는 경우가 잦아 따로 묶었다.
+        category: "명령창 제어 (Console Window)",
+        color: "#DB2777",
+        icon: "🪟",
+        items: [
+            { desc: "전체화면 토글 (레거시 콘솔·cmd)", keys: ["Alt", "Enter"] },
+            { desc: "전체화면 토글 (Windows Terminal)", keys: ["F11"] },
+            { desc: "전체화면 해제 / 창 모드 복귀", keys: ["Win", "↓"] },
+            { desc: "새 탭 열기 (Windows Terminal)", keys: ["Ctrl", "Shift", "T"] },
+            { desc: "창 닫기 / 셸 종료", keys: ["Ctrl", "D"] }
+        ]
     }
 ];
 

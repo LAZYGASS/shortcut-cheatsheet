@@ -6,6 +6,7 @@
 ## [Unreleased]
 
 ### Added
+- Terminal 페이지에 "명령창 제어 (Console Window)" 카테고리 추가: 전체화면 토글(Alt+Enter / F11), 창 모드 복귀(Win+↓), 새 탭, 셸 종료.
 - "내가 아는 단축키" 기능: 각 줄의 토글로 아는 단축키를 표시(흐리게 처리)하고, 헤더 버튼으로 완전히 숨기기. 상태는 페이지별로 localStorage에 저장.
 - 공용 스크립트 `js/known.js` (모든 페이지에 로드, 검색 재렌더링에도 유지).
 - `CHANGELOG.md`, `TODO.md` 추가 및 `README.md` 전면 갱신(9개 페이지·신규 기능 반영).
