@@ -1,0 +1,1044 @@
+<!--
+Source: https://github.com/BA-CalderonMorales/codex-cheat-sheet
+Copyright (c) 2026 BA-CalderonMorales. Licensed under the MIT License.
+The full license text is in codex-cheat-sheet-LICENSE.md.
+-->
+
+<div align="center">
+
+# Codex Cheat Sheet
+
+<a href="https://openai.com/codex/"><img width="763" height="341" alt="Codex cheat sheet" src="assets/image.png" /></a>
+
+> **Your complete guide to mastering OpenAI Codex — from zero to productive in minutes.**
+
+A practical reference for using OpenAI Codex CLI effectively. Focuses on patterns that help you think critically about what to delegate and what to handle yourself.
+
+**Based on official OpenAI Codex documentation** - All commands and examples are sourced from the [official Codex documentation](https://developers.openai.com/codex). For the most up-to-date information, always refer to the official docs.
+
+</div>
+
+## Quick Start
+
+```bash
+# Install with the official installer (recommended)
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+
+# Or with npm
+npm install -g @openai/codex
+
+# Or with Homebrew
+brew install --cask codex
+
+# Or with pnpm (official monorepo manager)
+pnpm install -g @openai/codex
+
+# Windows: Official install script
+powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
+
+# Self-update (installer installs)
+codex update
+
+# Launch Codex
+codex
+
+# Check version
+codex --version
+```
+
+## Table of Contents
+
+- **[Level 1: Getting Started](#level-1-getting-started)**
+- **[Level 2: Basic Commands](#level-2-basic-commands)**
+- **[Level 3: Intermediate Usage](#level-3-intermediate-usage)**
+- **[Level 4: Advanced Features](#level-4-advanced-features)**
+- **[Skills](#skills)** - Native, reusable capabilities
+- **[Level 5: Expert Workflows](#level-5-expert-workflows)**
+
+## Level 1: Getting Started
+
+Essential commands to get you started with Codex.
+
+<details>
+<summary><strong>Installation</strong></summary>
+
+```bash
+# Install globally with npm
+npm install -g @openai/codex
+
+# Install with Homebrew (macOS)
+brew install --cask codex
+
+# Install with pnpm (official monorepo manager)
+pnpm install -g @openai/codex
+
+# Official standalone installer (macOS/Linux)
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+
+# Windows: Official install script
+powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
+
+# Update with npm
+npm install -g @openai/codex
+
+# Update with Homebrew
+brew upgrade --cask codex
+
+# Self-update (when the installed release supports it)
+codex update
+
+# Download binary from GitHub releases
+# Visit: https://github.com/openai/codex/releases/latest
+```
+
+</details>
+
+<details>
+<summary><strong>First Steps</strong></summary>
+
+```bash
+# Start interactive mode
+codex
+
+# Run with a specific prompt
+codex "explain this project"
+
+# Non-interactive execution
+codex exec "explain utils.ts"
+```
+
+</details>
+
+<details>
+<summary><strong>Authentication</strong></summary>
+
+```bash
+# Sign in with ChatGPT account (recommended)
+codex
+# Then select "Sign in with ChatGPT"
+
+# Use API key (alternative - usage-based billing)
+printenv OPENAI_API_KEY | codex login --with-api-key
+# Or from a file:
+codex login --with-api-key < my_key.txt
+
+# Use an access token
+printenv CODEX_ACCESS_TOKEN | codex login --with-access-token
+
+# Device authentication
+codex login --device-auth
+
+# Check login status (exit 0 = credentials present)
+codex login status
+```
+
+</details>
+
+<details>
+<summary><strong>Basic Navigation</strong></summary>
+
+```bash
+# Keyboard shortcuts
+Ctrl+C                    # Cancel current operation (or run /exit to close the session)
+Tab                       # Queue a follow-up prompt, slash command, or shell command while Codex is working
+↑/↓                       # Restore draft history
+Esc Esc                   # Edit previous message (empty composer; forks the chat from that point)
+Ctrl+R                    # Search prompt history
+Ctrl+O                    # Copy the latest completed output
+Enter                     # Inject new instructions into the current turn
+!command                  # Run a local shell command under current approval/sandbox settings
+
+# Special input
+@                         # Trigger file search (fuzzy find)
+```
+
+</details>
+
+## Level 2: Basic Commands
+
+Core commands for everyday use.
+
+<details>
+<summary><strong>Slash Commands - Essentials</strong></summary>
+
+```bash
+/model                    # Choose model and reasoning effort
+/permissions              # Configure what Codex can do without approval
+/fast                     # Toggle Fast mode for supported models
+/personality              # Choose a communication style
+/review                   # Review current changes and find issues
+/new                      # Start a new chat during conversation
+/init                     # Create an AGENTS.md file with instructions
+/compact                  # Summarize conversation to prevent context limit
+/diff                     # Show git diff (including untracked files)
+/mention                  # Mention a file
+/status                   # Show current session config and token usage
+/mcp                      # List configured MCP tools
+/side                     # Start an ephemeral side conversation (/btw)
+/fork                     # Fork the current conversation into a new thread
+/ps                       # Show background terminals and their output
+/stop                     # Stop all background terminals
+/logout                   # Log out of Codex
+/quit                     # Exit Codex
+/exit                     # Exit Codex
+/feedback                 # Send logs to maintainers
+/goal                     # Set or view a persistent task goal
+/plan                     # Switch to plan mode for multi-step planning
+/approve                  # Approve one retry of an automatic-review denial
+/copy                     # Copy the latest completed output (or Ctrl+O)
+/clear                    # Clear the terminal and start a new chat
+/rename                   # Rename the current chat
+/archive                  # Archive the current session and exit Codex
+/delete                   # Permanently delete the current session and exit
+/resume                   # Resume a saved chat from your session list
+/app                      # Continue the session in the ChatGPT desktop app
+/agent                    # Switch the active agent thread (also /subagents)
+/apps                     # Browse apps (connectors) and insert into the prompt
+/plugins                  # Browse installed and discoverable plugins
+/hooks                    # View and manage lifecycle hooks
+/memories                 # Configure memory use and generation
+/import                   # Import Claude Code or Cursor setup
+/experimental             # Toggle experimental features
+/usage                    # View account token usage
+/debug-config             # Print config layer diagnostics
+/statusline               # Configure TUI footer items
+/title                    # Configure terminal title items
+/theme                    # Choose a syntax theme
+/pets                     # Choose or hide a terminal pet (/pet)
+/keymap                   # Remap TUI keyboard shortcuts
+/vim                      # Toggle Vim mode for the composer
+/ide                      # Include open files and IDE context
+/raw                      # Toggle raw scrollback mode
+/skills                   # Browse and use skills
+
+# /debug is no longer documented; use /debug-config for config diagnostics
+```
+
+</details>
+
+<details>
+<summary><strong>File and Directory Operations</strong></summary>
+
+```bash
+# Codex can read, write, and edit files
+"Read the contents of src/app.js"
+"Create a new file called utils.js"
+"Edit the function in main.py to add error handling"
+
+# View project structure
+"Explain the structure of this project"
+"What files are in the src directory?"
+```
+
+</details>
+
+<details>
+<summary><strong>Working with Code</strong></summary>
+
+```bash
+# Code analysis
+"Explain what this code does"
+"Review this function for bugs"
+"Suggest improvements for this file"
+
+# Code generation
+"Write a function to parse JSON"
+"Create unit tests for this module"
+"Add error handling to this code"
+```
+
+</details>
+
+<details>
+<summary><strong>Session Management</strong></summary>
+
+```bash
+# Resume sessions
+codex resume                          # Open session picker
+codex resume --last                   # Resume most recent session
+codex resume <SESSION_ID>             # Resume specific session by ID
+
+# Non-interactive session resume
+codex exec resume <SESSION_ID>        # Resume non-interactive session
+codex exec resume --last              # Resume last non-interactive session
+```
+
+</details>
+
+<details>
+<summary><strong>Subcommand Reference (0.147.0)</strong></summary>
+
+| Command | Purpose |
+|---|---|
+| `codex exec` | Run non-interactively (alias: `e`) |
+| `codex review` | Non-interactive code review (see [section below](#level-4-advanced-features)) |
+| `codex login` / `codex logout` | Manage authentication; `codex login status` checks credentials |
+| `codex resume` | Resume a saved session (picker; `--last` for most recent) |
+| `codex fork` | Fork a session into a new chat |
+| `codex archive` / `codex unarchive` | Archive / restore saved sessions |
+| `codex delete` | Permanently delete a session |
+| `codex apply` | Apply a Codex Cloud chat diff to the local working tree (alias: `a`) |
+| `codex cloud` | Browse or execute Codex Cloud tasks (Experimental) |
+| `codex plugin` | Install, list, and remove plugins; `codex plugin marketplace` manages sources |
+| `codex mcp` | Manage MCP servers (list, add, remove, authenticate) |
+| `codex mcp-server` | Deprecated; use the app server instead |
+| `codex doctor` | Diagnose install, config, auth, and runtime health |
+| `codex features` | Inspect feature flags (list / enable / disable) |
+| `codex sandbox` | Run commands inside a Codex-provided sandbox |
+| `codex update` | Self-update to the latest version |
+| `codex completion` | Generate shell completions (bash, zsh, fish, powershell) |
+| `codex app-server` | Run the app server (Experimental) |
+| `codex exec-server` | Run the standalone exec-server service (Experimental) |
+| `codex remote-control` | Manage the app-server daemon with remote control (Experimental) |
+| `codex debug` | Debugging tools (experimental subcommands) |
+
+</details>
+
+<details>
+<summary><strong>Useful CLI Flags</strong></summary>
+
+```bash
+# Model selection
+codex --model gpt-5 "your prompt"
+codex -m gpt-5.6-terra "complex task"
+
+# Working directory
+codex --cd /path/to/project           # Change working directory
+codex -C ../other-project             # Short form
+
+# Multiple directories
+codex --add-dir ../backend --add-dir ../shared "analyze all"
+
+# Approval settings
+codex --ask-for-approval untrusted    # Ask for untrusted commands
+codex -a on-request                   # Model decides when to ask (interactive)
+codex exec -a never "task"            # Never ask (non-interactive runs)
+
+# Sandbox settings
+codex --sandbox read-only             # Read-only sandbox (default)
+codex --sandbox workspace-write       # Allow workspace writes
+codex --sandbox danger-full-access    # Disable sandbox (dangerous!)
+
+# Image input
+codex -i screenshot.png "explain this error"
+codex --image img1.png,img2.jpg "summarize these diagrams"
+
+# Live web search
+codex --search "what is the latest version of X"
+
+# Approval automation
+codex --approve-for-me "refactor this"                     # Auto-review approvals
+codex --dangerously-bypass-approvals-and-sandbox "task"    # No approvals, no sandbox (alias: --yolo)
+codex --yolo "task"                                        # Short alias of the above
+
+# Strict config
+codex --strict-config                                      # Error on unknown config.toml fields
+
+# Local open-source providers
+codex --oss                                                # Use local open-source provider
+codex --oss --local-provider ollama                        # Choose provider (lmstudio | ollama)
+
+# Config profiles
+codex -p work "your prompt"                                # Layer ~/.codex/work.config.toml
+
+# Remote app server
+codex --remote ws://host:port                              # Connect TUI to a remote app server
+codex --remote wss://host:port --remote-auth-token-env TOKEN_ENV  # Bearer token from env var
+
+# Shell completions
+codex completion bash                 # Generate bash completions
+codex completion zsh                  # Generate zsh completions
+codex completion fish                 # Generate fish completions
+```
+
+</details>
+
+## Level 3: Intermediate Usage
+
+Configuration and customization options.
+
+<details>
+<summary><strong>Configuration</strong></summary>
+
+```bash
+# Config file location: ~/.codex/config.toml
+# Project overrides: .codex/config.toml (loaded only for trusted projects;
+# provider/auth/notification/telemetry keys are ignored in project-scoped files)
+
+# Edit config manually or use CLI flags
+codex --model gpt-5.6-terra "your prompt"
+codex --config model="gpt-5.6-terra"
+
+# Common configurations in config.toml:
+# - model selection
+# - approval_policy
+# - sandbox_mode
+# - mcp_servers
+# - profiles
+```
+
+</details>
+
+<details>
+<summary><strong>Model Selection</strong></summary>
+
+```bash
+# Set model in config.toml
+model = "gpt-6-astra"               # New flagship: hardest end-to-end work across code, apps, research (rolling out)
+model = "gpt-5.6-sol"              # Flagship: complex coding, computer use, research (recommended, September 2026)
+model = "gpt-5.6-terra"            # Balanced: everyday coding and knowledge work
+model = "gpt-5.6-luna"             # Fast: lightweight tasks, lowest cost
+
+# For reasoning models (gpt-6-astra, gpt-5.6-sol, gpt-5.6-terra):
+model_reasoning_effort = "medium"  # minimal, low, medium, high, xhigh
+model_reasoning_summary = "auto"   # auto, concise, detailed, none
+
+# For GPT-5 family models:
+model_verbosity = "medium"         # low, medium, high
+
+# Models available (as of September 2026):
+# - gpt-6-astra - New flagship for complex work across code, apps, and research (rolling out)
+# - gpt-5.6-sol (recommended) - Flagship for complex coding, computer use, research, security work
+# - gpt-5.6-terra - Balances capability and cost for everyday coding and knowledge work
+# - gpt-5.6-luna - Fastest, lowest-cost option for lightweight tasks
+# - gpt-5.3-codex-spark - Text-only research preview for near-instant coding iteration (ChatGPT Pro)
+# - gpt-5.5 - Previous-generation flagship
+# - gpt-5.4 / gpt-5.4-mini - Retired from Codex with ChatGPT sign-in on Aug 31, 2026
+# - gpt-5.2 / gpt-5.3-codex - Deprecated in Codex with ChatGPT sign-in
+# - Other OpenAI models via custom providers
+```
+
+### Model Updates (September 2026)
+
+**GPT-6 Astra** is the new flagship model, rolling out across clients:
+- Purpose-built for the hardest end-to-end work across code, apps, and research
+- Combines advanced reasoning, computer use, and stronger judgment
+- Use it when a task needs sustained reasoning across multiple steps and tools
+
+**GPT-5.6 Sol** remains the GPT-5.6 flagship:
+- Purpose-built for complex coding, computer use, research, and security work
+- Superior instruction following and technical accuracy
+
+**GPT-5.6 Terra** balances capability and cost:
+- Optimized for everyday coding and knowledge work
+- Strong reasoning with efficient token usage
+
+**GPT-5.6 Luna** is the fastest, lowest-cost option:
+- Ideal for lightweight tasks and quick iterations
+- Maintains quality while minimizing latency
+
+**Retirements:** gpt-5.4 and gpt-5.4-mini retired from Codex with ChatGPT sign-in on August 31, 2026 (replace with gpt-5.6-terra and gpt-5.6-luna); gpt-5.2 and gpt-5.3-codex are deprecated. The OpenAI API and API-key sign-in are unaffected.
+
+See the [official Models page](https://developers.openai.com/codex/models) for details.
+
+</details>
+
+<details>
+<summary><strong>Custom Prompts</strong></summary>
+
+```bash
+# Create custom prompts in ~/.codex/prompts/
+
+# Example: Create ~/.codex/prompts/review.md
+# Then use with:
+"Use the review prompt on this code"
+```
+
+</details>
+
+<details>
+<summary><strong>Memory with AGENTS.md</strong></summary>
+
+```bash
+# Create AGENTS.md in project root
+# Codex will remember project-specific context
+
+# Example AGENTS.md content:
+"""
+This project uses:
+- Node.js with Express
+- PostgreSQL database
+- Jest for testing
+
+Coding standards:
+- Use TypeScript
+- Follow ESLint rules
+- Write tests for all new features
+"""
+```
+
+</details>
+
+## Level 4: Advanced Features
+
+Powerful features for advanced workflows.
+
+<details>
+<summary><strong>Model Context Protocol (MCP)</strong></summary>
+
+```bash
+# Configure MCP servers in ~/.codex/config.toml
+
+# STDIO server example
+[mcp_servers.filesystem]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/allowed/files"]
+env = { API_KEY = "value" }
+
+# Streamable HTTP server example
+[mcp_servers.figma]
+url = "https://mcp.figma.com/mcp"
+bearer_token_env_var = "FIGMA_TOKEN"
+
+# MCP CLI commands
+codex mcp list                        # List configured servers
+codex mcp add <name> -- <command>     # Add a stdio server
+codex mcp add <name> --url <URL>      # Add a streamable HTTP server
+codex mcp get <name>                  # Show server details
+codex mcp remove <name>               # Remove a server
+codex mcp login <name>                # OAuth login (streamable HTTP)
+codex mcp logout <name>               # OAuth logout
+
+# Make startup fail if a server cannot initialize:
+[mcp_servers.figma]
+url = "https://mcp.figma.com/mcp"
+required = true
+
+# Plugins are the stable surface for packaged integrations
+codex plugin list                     # List plugins from configured marketplaces
+codex plugin add <plugin>             # Install a plugin (or PLUGIN@MARKETPLACE)
+codex plugin marketplace list         # Manage plugin marketplaces
+
+# Note: codex mcp-server is deprecated; use the app server instead
+
+# Popular MCP servers:
+# - Context7 (developer documentation)
+# - Figma (design access)
+# - Playwright (browser control)
+# - GitHub (GitHub API access)
+# - Sentry (log access)
+```
+
+See [MCP Documentation](https://developers.openai.com/codex/configuration) for details.
+
+</details>
+
+<details>
+<summary><strong>Sandbox & Permissions</strong></summary>
+
+```bash
+# Configure sandbox mode in config.toml
+sandbox_mode = "read-only"              # Default: read-only
+sandbox_mode = "workspace-write"        # Allow writes in workspace
+sandbox_mode = "danger-full-access"     # Disable sandbox (dangerous!)
+
+# Configure approval policy (valid: untrusted | on-request | never; "on-failure" is deprecated)
+approval_policy = "untrusted"           # Prompt for untrusted commands
+approval_policy = "on-request"          # Model decides when to ask (interactive)
+approval_policy = "never"               # Never prompt (non-interactive runs)
+
+# Workspace-write options
+[sandbox_workspace_write]
+writable_roots = ["/path/to/extra/dir"]
+network_access = false
+exclude_tmpdir_env_var = false
+exclude_slash_tmp = false
+```
+
+See [Sandbox & Approvals](https://developers.openai.com/codex/sandboxing) for details.
+
+</details>
+
+<details>
+<summary><strong>Non-Interactive Mode</strong></summary>
+
+```bash
+# Execute and exit with codex exec
+codex exec "summarize all TODO comments in this project"
+
+# Auto-review approvals (workspace-write sandbox, automatic review)
+codex exec --approve-for-me "refactor this code"
+
+# Fully unattended (dangerous - skips all approvals and sandboxing)
+codex exec --dangerously-bypass-approvals-and-sandbox "refactor this code"
+
+# Full access (dangerous!)
+codex exec --sandbox danger-full-access "your task"
+
+# JSON output for automation
+codex exec --json "analyze this project"
+
+# Structured output with JSON schema
+codex exec --output-schema schema.json "extract project details"
+
+# Save output to file (writes only the agent's last message, not the full run)
+codex exec -o output.txt "generate docs"
+
+# Pair with --json in CI: JSONL events to stdout + final summary to the file
+codex exec --json -o output.txt "generate docs"
+```
+
+See [Non-Interactive Mode (exec)](https://developers.openai.com/codex/non-interactive-mode) for details.
+
+</details>
+
+<details>
+<summary><strong>Non-Interactive Code Review</strong></summary>
+
+Run a dedicated review without launching the TUI. Reports prioritized findings without modifying the working tree.
+
+```bash
+codex review --uncommitted                    # Review staged, unstaged, and untracked changes
+codex review --base main                      # Review changes against a base branch
+codex review --commit <SHA>                   # Review the changes introduced by a commit
+codex review --uncommitted --title "wip: auth"  # Optional title in the review summary
+codex review "focus on security issues"       # Custom review instructions
+```
+
+See [Code Review](https://developers.openai.com/codex/code-review) for details.
+
+</details>
+
+<details>
+<summary><strong>Piping and Scripting</strong></summary>
+
+```bash
+# Pipe content to Codex
+cat logs.txt | codex exec "find the error"
+
+# Use in scripts
+git diff | codex exec "create a conventional commit message"
+
+# Combine commands
+codex exec "explain this file" < app.js > explanation.md
+```
+
+</details>
+
+<details>
+<summary><strong>Skills</strong></summary>
+
+<a id="skills"></a>
+
+- **What they are:** Native, on-disk reusable capabilities that Codex can auto-discover. Each skill is a bundle with `name`, `description`, and an optional body kept on disk. Skills are generally available — no feature flag required.
+- **Where skills live:** `~/.codex/skills/**/SKILL.md` (recursive). Only files named exactly `SKILL.md` count; hidden entries and symlinks are skipped.
+- **File format (YAML frontmatter + body):**
+  ```markdown
+  ---
+  name: your-skill-name          # required, ≤ 100 chars, single line
+  description: when/why to use   # required, ≤ 500 chars, single line
+  ---
+
+  # Optional body (kept on disk)
+  Add references, workflows, or examples here.
+  ```
+- **Using skills:** Mention with `$<skill-name>` in chat or browse/insert via `/skills` in the TUI. Codex injects only `name`, `description`, and the absolute file path.
+- **Validation behavior:** Invalid frontmatter triggers a dismissible startup modal and log entries; invalid skills are ignored until fixed.
+- **Sample skills in this repo:** Copy or symlink any of the samples below into `~/.codex/skills/<name>/SKILL.md`, then restart Codex:
+  - `skills/pdf-processing/SKILL.md`
+  - `skills/log-review/SKILL.md`
+  - `skills/form-filling/SKILL.md`
+  - `skills/project-management/SKILL.md`
+- **Pair with GitHub Skills:** You can combine Codex skills with the learning paths at [github.com/skills](https://github.com/skills) to onboard teams quickly while keeping reusable Codex guidance locally.
+- **Community alternative (pre-native skills):** The [openskills](https://github.com/numman-ali/openskills) project remains a viable open source option if you prefer a community-driven skills system.
+
+</details>
+
+## New Features 2025-2026
+
+Recent additions to Codex that you should know about:
+
+<details>
+<summary><strong>Task Goals</strong></summary>
+
+The `/goal` command sets a persisted objective for a long-running task. It loops plan → act → test → review until your stop condition is met.
+
+**Usage:**
+
+```bash
+/goal Finish the migration and keep tests green    # Set a goal
+/goal                                               # View current goal
+/goal pause                                         # Pause the current run
+/goal resume                                        # Resume a paused run
+/goal clear                                         # Clear the current goal
+```
+
+**When to use:** Multi-hour validated work with a clear "done" definition.
+**Skip it:** If you are still exploring or making judgment calls.
+
+> **Note:** Define one measurable stop condition. Use `/goal pause` or `/goal clear` if it drifts. Run on a scratch branch.
+
+See [OpenAI's follow-a-goal docs](https://developers.openai.com/codex/developer-commands#set-or-view-a-task-goal-with-goal) for details.
+
+</details>
+
+<details>
+<summary><strong>babysit-pr Skill</strong></summary>
+
+The `babysit-pr` skill automates PR maintenance:
+- Auto-fixes CI failures
+- Handles review comments
+- Watches for merge conflicts
+- Keeps your PRs moving through the pipeline
+
+```bash
+# Use with MCP GitHub integration
+codex "babysit this PR with $github"
+```
+
+</details>
+
+<details>
+<summary><strong>JavaScript REPL (js_repl)</strong></summary>
+
+Persistent JavaScript REPL for incremental code execution:
+- Test code snippets in real-time
+- Iterate on logic without full re-runs
+- Debug complex expressions
+
+```bash
+# Enable in config.toml
+[mcp_servers.js_repl]
+command = "node"
+args = ["-e", "process.stdin.on('data', d => eval(d.toString()))"]
+```
+
+</details>
+
+<details>
+<summary><strong>In-Process App Server</strong></summary>
+
+New architecture for non-interactive `exec` mode:
+- Faster startup times
+- Better for CI/CD integration
+- Reduced overhead for automation scripts
+
+</details>
+
+## AI-Powered Project Management with Codex
+
+Codex isn't just for code - it's a powerful project management assistant. Here's how to leverage it for managing projects, sprints, and tasks:
+
+<details>
+<summary><strong>Project Planning & Breakdown</strong></summary>
+
+```bash
+# Break down a large feature request
+codex "Break down this feature request into actionable tasks:
+- User authentication system
+- Must support OAuth and email
+- Include password reset flow
+- Add 2FA option"
+
+# Generate sprint backlog
+codex exec "Analyze this project and create a sprint backlog:
+- Prioritize by complexity
+- Estimate effort in hours
+- Identify dependencies"
+
+# Create user stories
+codex "Convert these requirements into user stories with acceptance criteria"
+```
+
+</details>
+
+<details>
+<summary><strong>GitHub Integration for Project Management</strong></summary>
+
+```bash
+# Auto-generate PR descriptions
+git diff | codex exec "Create a detailed PR description with:
+- Summary of changes
+- Testing performed
+- Breaking changes (if any)"
+
+# Create issues from TODO comments
+codex exec "Scan for TODO/FIXME comments and create GitHub issues"
+
+# Generate release notes
+codex exec "Create release notes from recent commits"
+```
+
+</details>
+
+<details>
+<summary><strong>Task Tracking & Status Updates</strong></summary>
+
+```bash
+# Generate status report
+codex "Review recent commits and generate a status report for stakeholders"
+
+# Track progress
+codex "What percentage of sprint tasks are complete based on merged PRs?"
+
+# Risk identification
+codex "Analyze this project and identify potential blockers or risks"
+```
+
+</details>
+
+<details>
+<summary><strong>Team Collaboration Patterns</strong></summary>
+
+```bash
+# Code review automation
+codex "Review this PR for:
+- Security vulnerabilities
+- Performance issues
+- Code quality standards
+- Test coverage gaps"
+
+# Documentation sync
+codex "Update the README based on recent feature additions"
+
+# Onboarding assistance
+codex "Create a new developer onboarding guide for this project"
+```
+
+</details>
+
+<details>
+<summary><strong>Creating Project Management Skills</strong></summary>
+
+You can create custom skills for your team's workflow:
+
+```markdown
+# ~/.codex/skills/team-sprint/SKILL.md
+---
+name: team-sprint
+description: Manage sprint planning and tracking for our team
+---
+
+# Sprint Workflow
+1. Use `/standup` to generate daily standup summaries
+2. Use `/retro` to collect retrospective feedback
+3. Use `/velocity` to calculate team velocity
+
+# Templates
+- Sprint planning template in docs/sprint-template.md
+- Retrospective format: Start/Stop/Continue
+```
+
+</details>
+
+## Level 5: Expert Workflows
+
+Advanced patterns and automation.
+
+<details>
+<summary><strong>GitHub Actions Integration</strong></summary>
+
+```yaml
+# Use codex-action for CI/CD
+name: Code Review
+on: [pull_request]
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: openai/codex-action@v1
+        with:
+          task: "Review this PR for security issues"
+```
+
+See [GitHub Action](https://github.com/openai/codex-action) for details.
+
+</details>
+
+<details>
+<summary><strong>Automated Code Review</strong></summary>
+
+```bash
+# Review entire PR
+codex "Review this PR for security, performance, and maintainability"
+
+# Generate conventional commit messages
+git diff HEAD~1 | codex exec "Create a conventional commit message"
+
+# Auto-fix common issues
+codex "Fix all ESLint errors in this project"
+```
+
+</details>
+
+<details>
+<summary><strong>CI/CD Pipeline Assistance</strong></summary>
+
+```bash
+# Generate CI config
+codex "Create a GitHub Actions workflow for:
+- TypeScript project
+- Run tests on PR
+- Deploy to Vercel on main"
+
+# Debug CI failures
+cat .github/workflows/build.log | codex exec "Find the root cause"
+```
+
+</details>
+
+<details>
+<summary><strong>Legacy Code Migration</strong></summary>
+
+```bash
+# Convert between languages
+codex "Convert this Python utility to TypeScript"
+
+# Update deprecated APIs
+codex "Update all React class components to functional components with hooks"
+
+# Add type safety
+codex "Add TypeScript types to this JavaScript project"
+```
+
+</details>
+
+<details>
+<summary><strong>Performance Optimization</strong></summary>
+
+```bash
+# Analyze bottlenecks
+codex "Profile this code and identify performance bottlenecks"
+
+# Optimize database queries
+codex "Refactor these N+1 queries to use batch loading"
+
+# Bundle optimization
+codex "Suggest webpack optimizations to reduce bundle size"
+```
+
+</details>
+
+<details>
+<summary><strong>Security Auditing</strong></summary>
+
+```bash
+# Find vulnerabilities
+codex "Audit this code for security vulnerabilities"
+
+# Dependency checks
+codex "Review package.json for outdated or vulnerable dependencies"
+
+# Compliance check
+codex "Check if this code follows OWASP security guidelines"
+```
+
+</details>
+
+<details>
+<summary><strong>Troubleshooting & Debugging</strong></summary>
+
+```bash
+# Analyze error logs
+cat error.log | codex exec "find the root cause"
+
+# Debug specific function
+codex "Debug why the login function is failing"
+
+# Reproduce and fix
+codex "Create a test case that reproduces this bug, then fix it"
+```
+
+</details>
+
+<details>
+<summary><strong>Documentation</strong></summary>
+
+```bash
+# Generate README
+codex exec "Create a comprehensive README for this project"
+
+# API documentation
+codex exec "Generate API docs from JSDoc comments"
+
+# Code comments
+codex "Add detailed comments to this complex function"
+```
+
+</details>
+
+<details>
+<summary><strong>Testing</strong></summary>
+
+```bash
+# Generate tests
+codex "Create unit tests for all functions in utils.js"
+
+# Test coverage
+codex "Analyze test coverage and suggest missing tests"
+
+# E2E test generation
+codex "Create Playwright E2E tests for the user flow"
+```
+
+</details>
+
+<details>
+<summary><strong>Refactoring</strong></summary>
+
+```bash
+codex "Refactor this code to:
+1. Improve readability
+2. Add error handling
+3. Follow TypeScript best practices
+4. Add type definitions"
+```
+
+</details>
+
+## Additional Resources
+
+**Official OpenAI Codex Documentation:**
+- [Official Repository](https://github.com/openai/codex) - Main repository and documentation hub
+- [Getting Started Guide](https://developers.openai.com/codex/quickstart) - Comprehensive getting started guide
+- [Configuration Reference](https://developers.openai.com/codex/configuration) - Complete config.toml reference
+- [Developer Commands](https://developers.openai.com/codex/developer-commands) - CLI commands, flags, and slash commands
+- [Non-Interactive Mode (exec)](https://developers.openai.com/codex/non-interactive-mode) - Automation with codex exec
+- [Authentication](https://developers.openai.com/codex/auth) - Authentication methods
+- [Sandbox & Approvals](https://developers.openai.com/codex/sandboxing) - Security and sandboxing
+- [AGENTS.md Documentation](https://developers.openai.com/codex/agent-configuration/agents-md) - Project instructions guide
+- [MCP Integration](https://developers.openai.com/codex/configuration) - MCP setup and usage
+- [Custom Prompts](https://developers.openai.com/codex/prompting) - Creating custom prompts
+- [FAQ](https://developers.openai.com/codex/reference/troubleshooting) - Frequently asked questions
+- [Skills](https://developers.openai.com/codex/skills-and-plugins) - Official guide
+
+**Extensions & Integrations:**
+- [GitHub Action](https://github.com/openai/codex-action) - CI/CD integration
+- [TypeScript SDK](https://developers.openai.com/codex/codex-sdk) - Programmatic usage
+- [VS Code Extension](https://developers.openai.com/codex/ide) - IDE integration
+
+**Related Tools:**
+- [Kimi Cheat Sheet](https://github.com/BA-CalderonMorales/kimi-cheat-sheet) - Companion guide for Kimi Code CLI
+
+**Model Context Protocol:**
+- [MCP Specification](https://modelcontextprotocol.io/) - Official MCP protocol docs
+- [MCP Server Examples](https://github.com/modelcontextprotocol/servers) - Community MCP servers
+
+> **Tip**: Always check the [official Codex documentation](https://github.com/openai/codex) for the latest features and updates. This cheat sheet is a quick reference, but the official docs contain the most comprehensive and up-to-date information.
+
+## Contributing
+
+Found an issue or have a suggestion? Contributions are welcome!
+
+- Report bugs or issues
+- Suggest new examples
+- Improve documentation
+- Share your workflows
+
+## License
+
+MIT License — Free to use and modify.
+
+## Credits and Inspiration
+
+This cheat sheet was inspired by the excellent [claude-code-cheat-sheet](https://github.com/Njengah/claude-code-cheat-sheet) by @Njengah. We adapted their progressive learning structure to create a similar quick reference guide for OpenAI Codex CLI.
+
+All commands and examples are verified against the [official OpenAI Codex documentation](https://developers.openai.com/codex).
+
+**Last updated: September 2026**  
+**Based on**: OpenAI Codex CLI (codex-cli 0.147.0, npm: @openai/codex)
+
+---
+*Last synced: 2026-09-03 via [workspace manager](https://github.com/BA-CalderonMorales)*
+
+
